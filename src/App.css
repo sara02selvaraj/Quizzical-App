@@ -1,10 +1,14 @@
 * {
   box-sizing: border-box;
 }
+body {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+}
 
 main {
-  max-width: 550px;
-  height:90vh;
+  max-width: 700px;
+  height:700px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -23,3 +27,33 @@ main {
   color:#F5F7FB;
   font-size: 16px;
 }
+.container{
+  padding: 40px;
+}
+.title, .quiz--question {
+  font-family: 'Karla', sans-serif;
+  font-weight:700;
+}
+.title {
+  font-size: 31px;
+}
+.quiz--question {
+  text-align: left;
+}
+.quiz--answers {
+  display: flex;
+  justify-content: space-evenly;
+}
+.quiz--answers .answers-item {
+  color:#293264;
+  font-size: 10.24px;
+  font-weight:500;
+  line-height: 12px;
+  padding: 4px 15px;
+  border: 0.79px solid #4D5B9E;
+  border-radius: 8px;
+}
+.bg-class{
+  background: #8a9bee;
+}
+
