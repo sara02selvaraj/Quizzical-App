@@ -1,11 +1,25 @@
+:root {
+  --ff-primary: 'Inter', sans-serif;
+  --ff-secondary: 'Karla', sans-serif;
+  --bg-primary: #F5F7FB;
+  --clr-primary: #293264;
+  --clr-accent: #4D5B9E;
+  --fs-h1: 31px;
+  --fs-body: 16px;
+  --fs-p: 10.24px;
+  --fw-reg: 400;
+  --fw-bold: 500;
+  --fw-bolder:700;
+}
+
 * {
   box-sizing: border-box;
 }
 body {
-  font-family: 'Inter', sans-serif;
-  font-size: 16px;
+  font-family: var(--ff-primary);
+  font-size: var(--fs-body);
   line-height: 19px;
-  font-weight: 400;
+  font-weight: var(--fw-reg);
 }
 
 main {
@@ -17,24 +31,24 @@ main {
   align-items: center;
   justify-content: center;
   text-align: center;
-  background-color: #F5F7FB;
+  background-color: var(--bg-primary);
   margin-top: 50px;
 }
 .btn{
-  background-color: #4D5B9E;
+  background-color: var(--clr-accent);
   border:none;
   outline:none;
-  color:#F5F7FB;
+  color:var(--bg-primary);
   cursor:pointer
 }
 .btn-primary {
-  font-size: 16px;
-  font-weight:500;
+  font-size: var(--fs-body);
+  font-weight:var(--fw-bold);
   padding: 16px 28px;
   border-radius: 15px;
 }
 .btn-secondary {
-  font-size: 10.24px;
+  font-size: var(--fs-p);
   font-weight:600;
   padding: 11px 22px;
   line-height: 12px;
@@ -53,11 +67,11 @@ main {
 }
 
 .title, .quiz--question {
-  font-family: 'Karla', sans-serif;
-  font-weight:700;
+  font-family: var(--ff-secondary);
+  font-weight:var(--fw-bolder);
 }
 .title {
-  font-size: 31px;
+  font-size: var(--fs-h1);
   line-height: 37px;
 }
 .quiz--question {
@@ -70,12 +84,12 @@ main {
   justify-content: space-around;
 }
 .quiz--answers .answers-item {
-  color:#293264;
-  font-size: 10.24px;
-  font-weight:500;
+  color:var(--clr-primary);
+  font-size: var(--fs-p);
+  font-weight:var(--fw-bold);
   line-height: 12px;
   padding: 4px 15px;
-  border: 0.79px solid #4D5B9E;
+  border: 0.79px solid var(--clr-accent);
   border-radius: 8px;
   cursor:pointer;
 }
@@ -88,7 +102,7 @@ main {
   margin-top:20px;
 }
 .footer p{
-  font-weight: 500;
+  font-weight: var(--fw-bold);
   font-size: 12.8px;
   line-height: 15px;
 }
