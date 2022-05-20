@@ -1,7 +1,10 @@
 import { nanoid } from "nanoid";
 import { useEffect, useState } from "react";
+import StartQuiz from "./components/StartQuiz";
+import QuizContainer from "./components/QuizContainer";
 import "./App.css";
-import Quiz from "./components/Quiz";
+import he from 'he'
+
 
 function App() {
   const [quiz, setQuiz] = useState([])
@@ -21,7 +24,7 @@ function App() {
           data.results.map((item) => {
             return {
               id: nanoid(),
-              question: item.question,
+              question: he.decode(item.question),
               answers: shuffle([
                 ...item.incorrect_answers,
                 item.correct_answer,
@@ -44,19 +47,19 @@ function App() {
     let array = arr.map((ans) => {
       return {
         id: nanoid(),
-        answer: ans,
+        answer: he.decode(ans),
         isSelected: false,
       }
     })
     for (let i = array.length - 1; i > 0; i--) {
-      let j = Math.floor(Math.random() * (i + 1));
-      let temp = array[i];
-      array[i] = array[j];
-      array[j] = temp;
+      let j = Math.floor(Math.random() * (i + 1))
+      let temp = array[i]
+      array[i] = array[j]
+      array[j] = temp
     }
     return array
   }
-
+console.log(quiz)
   function handleSelected(quesId, selectedAnsId) {
     setQuiz((prevState) =>
       prevState.map((item) => {
@@ -69,10 +72,8 @@ function App() {
                 : { ...ans, isSelected: false };
             }),
             scored:
-              item.correctAnswer ==
+              item.correctAnswer ===
               item.answers.find((ans) => ans.id === selectedAnsId).answer
-                ? true
-                : false,
           }
         } else {
           return item
@@ -90,40 +91,11 @@ function App() {
   return (
     <main>
       <div className="container">
-        {quiz.length > 0 ? (
-          <div>
-            {quiz.map((item) => (
-              <Quiz
-                key={item.id}
-                id={item.id}
-                question={item.question}
-                answers={item.answers}
-                handleSelected={handleSelected}
-                scored={item.scored}
-                displayResult={displayResult}
-              />
-            ))}
-            {displayResult ? (
-              <div className="footer">
-                <p>You scored {score}/5 correct answers</p>
-                <button onClick={handleRestart} className="btn btn-secondary">
-                  Play Again
-                </button>
-              </div>
-            ) : (
-              <button onClick={handleSubmit} className="btn btn-secondary">
-                Check answers
-              </button>
-            )}
-          </div>
+        {quiz.length ? (
+          <QuizContainer quiz={quiz} handleSelected={handleSelected}
+          displayResult={displayResult} score={score} handleRestart={handleRestart} handleSubmit={handleSubmit}/>
         ) : (
-          <div>
-            <h1 className="title">Quizzical</h1>
-            <p>Quizzical app to test your general knowledge</p>
-            <button onClick={handleQuiz} className="btn btn-primary">
-              Start Quiz
-            </button>
-          </div>
+          <StartQuiz handleQuiz={handleQuiz}/>
         )}
       </div>
     </main>

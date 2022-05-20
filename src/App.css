@@ -39,7 +39,8 @@ main {
   border:none;
   outline:none;
   color:var(--bg-primary);
-  cursor:pointer
+  cursor:pointer;
+  font-family: inherit;
 }
 .btn-primary {
   font-size: var(--fs-body);
@@ -58,15 +59,15 @@ main {
 .container{
   padding: 40px;
 }
-.quiz--container{
+.question--container{
   border-bottom: 0.79px solid #DBDEF0;
   padding:8px 0;
 }
-.quiz--container:last-child {
+.question--container:last-child {
   border:0;
 }
 
-.title, .quiz--question {
+.title, .question--text {
   font-family: var(--ff-secondary);
   font-weight:var(--fw-bolder);
 }
@@ -74,16 +75,16 @@ main {
   font-size: var(--fs-h1);
   line-height: 37px;
 }
-.quiz--question {
+.question--text {
   text-align: left;
   
   margin: 9px 0;
 }
-.quiz--answers {
+.question--answers {
   display: flex;
   justify-content: space-around;
 }
-.quiz--answers .answers-item {
+.question--answers .answers-item {
   color:var(--clr-primary);
   font-size: var(--fs-p);
   font-weight:var(--fw-bold);

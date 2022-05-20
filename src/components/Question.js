@@ -1,9 +1,9 @@
-function Quiz(props) {
+function Question(props) {
 
     return (
-        <div className="quiz--container">
-            <h2 className="quiz--question">{props.question}</h2>
-            <div className="quiz--answers">
+        <div className="question--container">
+            <h2 className="question--text">{props.question}</h2>
+            <div className="question--answers">
                {
                     props.answers.map(item => <p key={item.id} onClick={() => props.handleSelected(props.id,item.id)} 
                     className={`answers-item ${!props.displayResult && item.isSelected ? 'bg-class' : ''}`}
@@ -16,4 +16,4 @@ function Quiz(props) {
     )
 }
 
-export default Quiz
+export default Question
