@@ -31,6 +31,7 @@ function App() {
               ]),
               correctAnswer: item.correct_answer,
               scored: false,
+              isAttempted: false
             }
           })
         )
@@ -71,9 +72,8 @@ console.log(quiz)
                 ? { ...ans, isSelected: !ans.isSelected }
                 : { ...ans, isSelected: false };
             }),
-            scored:
-              item.correctAnswer ===
-              item.answers.find((ans) => ans.id === selectedAnsId).answer
+            scored:item.correctAnswer === item.answers.find((ans) => ans.id === selectedAnsId).answer,
+            isAttempted : !item.isAttempted
           }
         } else {
           return item
@@ -83,9 +83,15 @@ console.log(quiz)
   }
 
   function handleSubmit() {
-    let count = quiz.filter((item) => item.scored)
-    setScore(count.length)
-    setDisplayResult(true)
+    const allSelectionArray = quiz.map(item => item.answers.some(ans => ans.isSelected))
+    const allQuestionAttempted = allSelectionArray.every(item => item)
+    if(allQuestionAttempted) {
+      let count = quiz.filter((item) => item.scored)
+        setScore(count.length)
+        setDisplayResult(true)
+    }else {
+      alert('Please attempt all questions')
+    }
   }
 
   return (
