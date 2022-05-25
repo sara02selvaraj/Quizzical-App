@@ -95,7 +95,7 @@ main {
   cursor:pointer;
 }
 .bg-class{
-  background: #8a9bee;
+  background: green;
 }
 .footer {
   display: flex;

@@ -29,7 +29,7 @@ function App() {
                 ...item.incorrect_answers,
                 item.correct_answer,
               ]),
-              correctAnswer: item.correct_answer,
+              correctAnswer: he.decode(item.correct_answer),
               scored: false,
               isAttempted: false
             }
@@ -39,7 +39,7 @@ function App() {
   }
 
   function handleRestart() {
-    renderQuiz()
+    setQuiz([])
     setDisplayResult(false)
     setScore(0)
   }

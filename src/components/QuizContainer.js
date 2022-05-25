@@ -7,11 +7,8 @@ function QuizContainer(props) {
             {props.quiz.map((item) => (
               <Question
                 key={item.id}
-                id={item.id}
-                question={item.question}
-                answers={item.answers}
+                item={item}
                 handleSelected={props.handleSelected}
-                scored={item.scored}
                 displayResult={props.displayResult}
               />
             ))}

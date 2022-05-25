@@ -1,14 +1,27 @@
 function Question(props) {
+    let bgColor 
+    if(props.displayResult){
+        if(props.item.scored){
+            bgColor = 'green'
+    }
+    else{
+        bgColor ='red'
+    }
+    }
+    else {
+        bgColor = '#8a9bee'
+    }
+    
 
     return (
         <div className="question--container">
-            <h2 className="question--text">{props.question}</h2>
+            <h2 className="question--text">{props.item.question}</h2>
             <div className="question--answers">
                {
-                    props.answers.map(item => <p key={item.id} onClick={() => props.handleSelected(props.id,item.id)} 
-                    className={`answers-item ${!props.displayResult && item.isSelected ? 'bg-class' : ''}`}
-                    style={{backgroundColor: props.displayResult && props.scored && item.isSelected  ?  "#94D7A2"
-                     : item.isSelected && !props.scored && props.displayResult ? '#F8BCBC' : ""  }}>{item.answer}</p>)
+                    props.item.answers.map(ans => <p key={ans.id} 
+                        onClick={() => props.handleSelected(props.item.id,ans.id)} 
+                    className={`answers-item ${props.displayResult && ans.answer === props.item.correctAnswer ? 'bg-class' : ''}`}
+                    style={{backgroundColor: ans.isSelected && bgColor }}>{ans.answer}</p>)
                 }
             </div>
             
