@@ -1,8 +1,10 @@
-import { nanoid } from "nanoid";
-import { useEffect, useState } from "react";
-import StartQuiz from "./components/StartQuiz";
-import QuizContainer from "./components/QuizContainer";
-import "./App.css";
+import { nanoid } from "nanoid"
+import { useState } from "react"
+import blob from './assets/img/blob.png'
+import blob1 from './assets/img/blob1.png'
+import StartQuiz from "./components/StartQuiz"
+import QuizContainer from "./components/QuizContainer"
+import "./App.css"
 import he from 'he'
 
 
@@ -11,12 +13,13 @@ function App() {
   const [score, setScore] = useState(0)
   const [displayResult, setDisplayResult] = useState(false)
 
-  function handleQuiz() {
-    renderQuiz()
+  function handleQuiz(range) {
+    renderQuiz(range)
   }
 
-  function renderQuiz() {
-    const dataURL = `https://opentdb.com/api.php?amount=5&category=9&difficulty=easy&type=multiple`
+  function renderQuiz(range) {
+    const dataURL = `https://opentdb.com/api.php?amount=5&category=9&difficulty=${range}&type=multiple`
+    console.log(dataURL)
     fetch(dataURL)
       .then((res) => res.json())
       .then((data) => {
@@ -60,9 +63,10 @@ function App() {
     }
     return array
   }
-console.log(quiz)
+
   function handleSelected(quesId, selectedAnsId) {
-    setQuiz((prevState) =>
+    if(!displayResult) {
+      setQuiz((prevState) =>
       prevState.map((item) => {
         if (item.id === quesId) {
           return {
@@ -80,6 +84,7 @@ console.log(quiz)
         }
       })
     )
+    }
   }
 
   function handleSubmit() {
@@ -97,12 +102,14 @@ console.log(quiz)
   return (
     <main>
       <div className="container">
+        <img className="img blob-yellow" src={blob} alt=''/>
         {quiz.length ? (
           <QuizContainer quiz={quiz} handleSelected={handleSelected}
           displayResult={displayResult} score={score} handleRestart={handleRestart} handleSubmit={handleSubmit}/>
         ) : (
           <StartQuiz handleQuiz={handleQuiz}/>
         )}
+        <img className="img blob-blue" src={blob1} alt=''/>
       </div>
     </main>
   )
