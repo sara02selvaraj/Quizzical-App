@@ -33,6 +33,17 @@ main {
   text-align: center;
   background-color: var(--bg-primary);
   margin-top: 50px;
+  position: relative;
+}
+.blob-blue{
+  position: absolute;
+  top:0;
+  right:0;
+}
+.blob-yellow{
+  position: absolute;
+  bottom:0;
+  left:0;
 }
 .btn{
   background-color: var(--clr-accent);
@@ -55,6 +66,21 @@ main {
   line-height: 12px;
   border-radius: 10px;
   margin-top:15px;
+}
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.select-control {
+  margin-bottom: 30px;
+  font-size: 19px;
+  padding:5px 10px;
+  border: 0.5px solid #D6DBF5;;
+  outline: none;
+  border-radius: 8px;
+  font-family: var(--ff-primary);
+  font-weight:var(--fw-bold);;
 }
 .container{
   padding: 40px;
@@ -95,7 +121,7 @@ main {
   cursor:pointer;
 }
 .bg-class{
-  background: green;
+  background: #94D7A2;
 }
 .footer {
   display: flex;
