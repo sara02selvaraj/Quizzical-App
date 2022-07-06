@@ -4,14 +4,20 @@
   --bg-primary: #F5F7FB;
   --clr-primary: #293264;
   --clr-accent: #4D5B9E;
-  --fs-h1: 31px;
-  --fs-body: 16px;
-  --fs-p: 10.24px;
+  --fs-h1: 1.93rem;
+  --fs-body: 1rem;
+  --fs-p: 0.64rem;
   --fw-reg: 400;
   --fw-bold: 500;
   --fw-bolder:700;
 }
-
+@media (max-width: 650px) {
+  :root {
+    --fs-h1: 1.45rem;
+    --fs-body: 0.85rem;
+    --fs-p: 0.64rem;
+  }
+}
 * {
   box-sizing: border-box;
 }
@@ -24,7 +30,7 @@ body {
 
 main {
   max-width: 700px;
-  height:750px;
+  min-height: 80vh;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -56,16 +62,16 @@ main {
 .btn-primary {
   font-size: var(--fs-body);
   font-weight:var(--fw-bold);
-  padding: 16px 28px;
+  padding: 1em 1.75em;
   border-radius: 15px;
 }
 .btn-secondary {
   font-size: var(--fs-p);
   font-weight:600;
-  padding: 11px 22px;
+  padding: 1.07em 2.14em;
   line-height: 12px;
   border-radius: 10px;
-  margin-top:15px;
+  margin-top:1.46em;
 }
 .content {
   display: flex;
@@ -74,8 +80,8 @@ main {
 }
 .select-control {
   margin-bottom: 30px;
-  font-size: 19px;
-  padding:5px 10px;
+  font-size: var(--fs-body);
+  padding:0.31em 0.625em;
   border: 0.5px solid #D6DBF5;;
   outline: none;
   border-radius: 8px;
@@ -83,7 +89,7 @@ main {
   font-weight:var(--fw-bold);;
 }
 .container{
-  padding: 40px;
+  width:90%;
 }
 .question--container{
   border-bottom: 0.79px solid #DBDEF0;
@@ -113,9 +119,9 @@ main {
 .question--answers .answers-item {
   color:var(--clr-primary);
   font-size: var(--fs-p);
-  font-weight:var(--fw-bold);
+  font-weight:var(--fw-bolder);
   line-height: 12px;
-  padding: 4px 15px;
+  padding: 0.39em 1.46em;
   border: 0.79px solid var(--clr-accent);
   border-radius: 8px;
   cursor:pointer;
@@ -130,8 +136,34 @@ main {
 }
 .footer p{
   font-weight: var(--fw-bold);
-  font-size: 12.8px;
+  font-size: 0.8rem;
   line-height: 15px;
 }
   
 
+@media (max-width: 650px){
+  main{
+    min-height: 100vh;
+    margin: 0;
+  }
+  .container{
+    width:96%;
+  }
+  .blob-blue{
+    position: absolute;
+    top:-50;
+    right:-50;
+  }
+  .blob-yellow{
+    position: absolute;
+    bottom:0;
+    left:0;
+  }
+  .question--answers .answers-item {
+    padding: 0.29em 1.36em;
+    font-weight:var(--fw-bold);
+  }
+  .img{
+    width:110px;
+  }
+}
