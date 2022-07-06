@@ -1,17 +1,11 @@
 function Question(props) {
     let bgColor 
     if(props.displayResult){
-        if(props.item.scored){
-            bgColor = '#94D7A2'
-    }
-        else{
-            bgColor ='#F8BCBC'
-        }
+        bgColor = props.item.scored ? "#94D7A2" : "#F8BCBC"
     }
     else {
         bgColor = '#8a9bee'
     }
-    
 
     return (
         <div className="question--container">

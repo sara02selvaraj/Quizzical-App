@@ -1,25 +1,28 @@
 import { nanoid } from "nanoid"
-import { useState } from "react"
+import { useState, useRef } from "react"
+import Confetti from "react-confetti"
+import he from 'he'
 import blob from './assets/img/blob.png'
 import blob1 from './assets/img/blob1.png'
 import StartQuiz from "./components/StartQuiz"
 import QuizContainer from "./components/QuizContainer"
+import {category} from './category'
 import "./App.css"
-import he from 'he'
-
 
 function App() {
   const [quiz, setQuiz] = useState([])
   const [score, setScore] = useState(0)
   const [displayResult, setDisplayResult] = useState(false)
 
-  function handleQuiz(range) {
-    renderQuiz(range)
+  const handleQuiz =(form) => {
+    renderQuiz(form)
   }
 
-  function renderQuiz(range) {
-    const dataURL = `https://opentdb.com/api.php?amount=5&category=9&difficulty=${range}&type=multiple`
-    console.log(dataURL)
+  const renderQuiz = (form) => {
+    const selectedCategory = category.filter(item  => item.type === form.category).map(item => item.id)
+  
+    const dataURL = `https://opentdb.com/api.php?amount=5&category=${selectedCategory}&difficulty=${form.range}&type=multiple`
+
     fetch(dataURL)
       .then((res) => res.json())
       .then((data) => {
@@ -41,13 +44,12 @@ function App() {
       })
   }
 
-  function handleRestart() {
+  const handleRestart = () => {
     setQuiz([])
     setDisplayResult(false)
     setScore(0)
   }
-
-  function shuffle(arr) {
+  const shuffle = (arr) => {
     let array = arr.map((ans) => {
       return {
         id: nanoid(),
@@ -64,7 +66,7 @@ function App() {
     return array
   }
 
-  function handleSelected(quesId, selectedAnsId) {
+  const handleSelected = (quesId, selectedAnsId) => {
     if(!displayResult) {
       setQuiz((prevState) =>
       prevState.map((item) => {
@@ -87,7 +89,7 @@ function App() {
     }
   }
 
-  function handleSubmit() {
+  const handleSubmit = () => {
     const allSelectionArray = quiz.map(item => item.answers.some(ans => ans.isSelected))
     const allQuestionAttempted = allSelectionArray.every(item => item)
     if(allQuestionAttempted) {
@@ -99,15 +101,20 @@ function App() {
     }
   }
 
+  const generateCategoryTypeForDropDown = () => {
+    return category.map(item => item.type)
+  }
+
   return (
     <main>
+      {score >= 4 && <Confetti width={650} height={600}/> }
       <div className="container">
         <img className="img blob-yellow" src={blob} alt=''/>
         {quiz.length ? (
           <QuizContainer quiz={quiz} handleSelected={handleSelected}
           displayResult={displayResult} score={score} handleRestart={handleRestart} handleSubmit={handleSubmit}/>
         ) : (
-          <StartQuiz handleQuiz={handleQuiz}/>
+          <StartQuiz handleQuiz={handleQuiz} types = {generateCategoryTypeForDropDown()}/>
         )}
         <img className="img blob-blue" src={blob1} alt=''/>
       </div>
