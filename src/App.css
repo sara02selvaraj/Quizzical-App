@@ -30,7 +30,7 @@ body {
 
 main {
   max-width: 700px;
-  min-height: 80vh;
+  min-height: 100vh;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -38,18 +38,6 @@ main {
   justify-content: center;
   text-align: center;
   background-color: var(--bg-primary);
-  margin-top: 50px;
-  position: relative;
-}
-.blob-blue{
-  position: absolute;
-  top:0;
-  right:0;
-}
-.blob-yellow{
-  position: absolute;
-  bottom:0;
-  left:0;
 }
 .btn{
   background-color: var(--clr-accent);
@@ -148,16 +136,6 @@ main {
   }
   .container{
     width:96%;
-  }
-  .blob-blue{
-    position: absolute;
-    top:-50;
-    right:-50;
-  }
-  .blob-yellow{
-    position: absolute;
-    bottom:0;
-    left:0;
   }
   .question--answers .answers-item {
     padding: 0.29em 1.36em;

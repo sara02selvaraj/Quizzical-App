@@ -1,9 +1,7 @@
 import { nanoid } from "nanoid"
-import { useState, useRef } from "react"
+import { useState} from "react"
 import Confetti from "react-confetti"
 import he from 'he'
-import blob from './assets/img/blob.png'
-import blob1 from './assets/img/blob1.png'
 import StartQuiz from "./components/StartQuiz"
 import QuizContainer from "./components/QuizContainer"
 import {category} from './category'
@@ -109,14 +107,12 @@ function App() {
     <main>
       {score >= 4 && <Confetti width={650} height={600}/> }
       <div className="container">
-        <img className="img blob-yellow" src={blob} alt=''/>
         {quiz.length ? (
           <QuizContainer quiz={quiz} handleSelected={handleSelected}
           displayResult={displayResult} score={score} handleRestart={handleRestart} handleSubmit={handleSubmit}/>
         ) : (
           <StartQuiz handleQuiz={handleQuiz} types = {generateCategoryTypeForDropDown()}/>
         )}
-        <img className="img blob-blue" src={blob1} alt=''/>
       </div>
     </main>
   )
